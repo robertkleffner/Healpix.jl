@@ -165,7 +165,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Pixel functions",
     "title": "Pixel functions",
     "category": "section",
-    "text": "In this section we document the functions that convert from a direction in the sky into a pixel index, and vice versa.First of all, Healpix.jl implements the most basic functions to convert between spherical and Cartesian coordinates. Note that Healpix uses co-latitude instead of latitude:ang2vec(0.0, 0.0)\nvec2ang(0.0, 0.0, 1.0)More interesting functions return the index of the pixel on a Healpix-tessellated sphere. For these functions to work, you have to provide a Resolution object:res = Resolution(16)\nang2pixRing(res, π/2, 0)\nang2pixNest(res, π/2, 0)ang2vec(theta, phi)\nvec2ang(x, y, z)\nang2pixNest(resol::Resolution, theta, phi)\nang2pixRing(resol::Resolution, theta, phi)\npix2angNest(resol::Resolution, pixel)\npix2angRing(resol::Resolution, pixel)"
+    "text": "In this section we document the functions that convert from a direction in the sky into a pixel index, and vice versa.First of all, Healpix.jl implements the most basic functions to convert between spherical and Cartesian coordinates. Note that Healpix uses co-latitude instead of latitude:using Healpix # hide\nang2vec(0.0, 0.0)\nvec2ang(0.0, 0.0, 1.0)More interesting functions return the index of the pixel on a Healpix-tessellated sphere. For these functions to work, you have to provide a Resolution object:res = Resolution(16)\nang2pixRing(res, π/2, 0)\nang2pixNest(res, π/2, 0)ang2vec(theta, phi)\nvec2ang(x, y, z)\nang2pixNest(resol::Resolution, theta, phi)\nang2pixRing(resol::Resolution, theta, phi)\npix2angNest(resol::Resolution, pixel)\npix2angRing(resol::Resolution, pixel)"
 },
 
 {
