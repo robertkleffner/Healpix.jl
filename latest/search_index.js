@@ -77,7 +77,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Working with resolutions",
     "title": "Working with resolutions",
     "category": "section",
-    "text": "A Healpix tessellation is parametrized by a number, called NSIDE, which must be a positive power of 2. It is related to the number of pixels N in the maps by the simple equation N = 12 mathrmNSIDE^2, and it is therefore related to the resolution of the pixelization. Any function working on a Healpix tessellation needs to receive the value of NSIDE. Healpix.jl provides a wrapper around this parameter, the Resolution type, which internally keeps a number of precomputed coefficients to accelerate calculations.Resolution\nResolution(nside)\nnside2npix(nside)\nnpix2nside(npix)"
+    "text": "A Healpix tessellation is parametrized by a number, called NSIDE, which must be a positive power of 2. It is related to the number of pixels N in the maps by the simple equation N = 12 mathrmNSIDE^2, and it is therefore related to the resolution of the pixelization. Any function working on a Healpix tessellation needs to receive the value of NSIDE. Healpix.jl provides a wrapper around this parameter, the Resolution type, which internally keeps a number of precomputed coefficients to accelerate calculations.The following example prints a table containing details about a few Healpix resolutions:using Healpix\n\n@printf(\"%-6s\\t%-12s\\t%-12s\\t%-12s\\n\",\n        \"NSIDE\",\n        \"#pix\",\n        \"#pix per face\",\n        \"solid angle\")\nfor poweroftwo in [0, 1, 2, 3, 4, 5]\n    res = Resolution(2 ^ poweroftwo)\n    @printf(\"%6d\\t%12d\\t%12d\\t%12.4f\\n\",\n            res.nside,\n            res.numOfPixels,\n            res.pixelsPerFace,\n            4π / res.numOfPixels)\nendResolution\nResolution(nside)\nnside2npix(nside)\nnpix2nside(npix)"
 },
 
 {
@@ -141,7 +141,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Pixel functions",
     "title": "Pixel functions",
     "category": "section",
-    "text": "In this section we document the functions that convert from a direction in the sky into a pixel index, and vice versa.ang2vec(theta, phi)\nvec2ang(x, y, z)\nang2pixNest(resol::Resolution, theta, phi)\nang2pixRing(resol::Resolution, theta, phi)\npix2angNest(resol::Resolution, pixel)\npix2angRing(resol::Resolution, pixel)"
+    "text": "In this section we document the functions that convert from a direction in the sky into a pixel index, and vice versa.First of all, Healpix.jl implements the most basic functions to convert between spherical and Cartesian coordinates. Note that Healpix uses co-latitude instead of latitude:using Healpix # hide\nang2vec(0.0, 0.0)\nvec2ang(0.0, 0.0, 1.0)More interesting functions return the index of the pixel on a Healpix-tessellated sphere. For these functions to work, you have to provide a Resolution object:using Healpix # hide\nres = Resolution(16)\nang2pixRing(res, π/2, 0)\nang2pixNest(res, π/2, 0)ang2vec(theta, phi)\nvec2ang(x, y, z)\nang2pixNest(resol::Resolution, theta, phi)\nang2pixRing(resol::Resolution, theta, phi)\npix2angNest(resol::Resolution, pixel)\npix2angRing(resol::Resolution, pixel)"
 },
 
 {
@@ -421,7 +421,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Miscellanea",
     "title": "General-purpose functions",
     "category": "section",
-    "text": "In this section we present a number of functions that do not fall in any of the categories above.normalizeAngle(x)\nlat2colat(x)"
+    "text": "Healpix.jl implements a few generic functions that can be helpful when doing calculations on the sphere.normalizeAngle(x)\nlat2colat(x)"
 },
 
 ]}
