@@ -5,7 +5,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Introduction",
     "title": "Introduction",
     "category": "page",
-    "text": ""
+    "text": "DocTestSetup = quote\n    using Healpix\nend"
 },
 
 {
@@ -37,7 +37,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Working with resolutions",
     "title": "Working with resolutions",
     "category": "page",
-    "text": ""
+    "text": "DocTestSetup = quote\n    using Healpix\nend"
 },
 
 {
@@ -49,7 +49,7 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "resolutions.html#Healpix.Resolution-Tuple{Any}",
+    "location": "resolutions.html#Healpix.Resolution-Tuple{Integer}",
     "page": "Working with resolutions",
     "title": "Healpix.Resolution",
     "category": "method",
@@ -57,19 +57,43 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "resolutions.html#Healpix.nside2npix-Tuple{Any}",
+    "location": "resolutions.html#Healpix.nsideok-Tuple{Integer}",
     "page": "Working with resolutions",
-    "title": "Healpix.nside2npix",
+    "title": "Healpix.nsideok",
     "category": "method",
-    "text": "nside2npix(nside) -> Integer\n\nReturn the number of pixels for a Healpix map with the specified NSIDE value. If NSIDE is not an integer power of two, the function throws a DomainError exception.\n\n\n\n"
+    "text": "nsideok(nside::Integer) -> Bool\n\nCheck whether nside is a valid NSIDE parameter.\n\n\n\n"
 },
 
 {
-    "location": "resolutions.html#Healpix.npix2nside-Tuple{Any}",
+    "location": "resolutions.html#Healpix.nside2npix-Tuple{Integer}",
+    "page": "Working with resolutions",
+    "title": "Healpix.nside2npix",
+    "category": "method",
+    "text": "nside2npix(nside::Integer) -> Integer\n\nReturn the number of pixels for a Healpix map with the specified NSIDE value. If NSIDE is not an integer power of two, the function throws a DomainError exception.\n\n\n\n"
+},
+
+{
+    "location": "resolutions.html#Healpix.npix2nside-Tuple{Integer}",
     "page": "Working with resolutions",
     "title": "Healpix.npix2nside",
     "category": "method",
-    "text": "npix2nside(nside) -> Integer\n\nGiven the number of pixels in a Healpix map, return the NSIDE resolution parameter. If the number is invalid, throw a DomainError exception.\n\n\n\n"
+    "text": "npix2nside(npix::Integer) -> Integer\n\nGiven the number of pixels in a Healpix map, return the NSIDE resolution parameter. If the number is invalid, throw a DomainError exception.\n\n\n\n"
+},
+
+{
+    "location": "resolutions.html#Healpix.nside2pixarea-Tuple{Integer}",
+    "page": "Working with resolutions",
+    "title": "Healpix.nside2pixarea",
+    "category": "method",
+    "text": "nside2pixarea(nside::Integer) -> Real\n\nReturn the solid angle of a pixel in a map with the specified NSIDE parameter. The result is expressed in steradians.\n\n\n\n"
+},
+
+{
+    "location": "resolutions.html#Healpix.nside2resol-Tuple{Integer}",
+    "page": "Working with resolutions",
+    "title": "Healpix.nside2resol",
+    "category": "method",
+    "text": "nside2resol(nside::Integer) -> Real\n\nReturn the approximate resolution of a map with the specified NSIDE. The resolution is expressed in radians, and it is the square root of the pixel size.\n\n\n\n"
 },
 
 {
@@ -77,7 +101,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Working with resolutions",
     "title": "Working with resolutions",
     "category": "section",
-    "text": "A Healpix tessellation is parametrized by a number, called NSIDE, which must be a positive power of 2. It is related to the number of pixels N in the maps by the simple equation N = 12 mathrmNSIDE^2, and it is therefore related to the resolution of the pixelization. Any function working on a Healpix tessellation needs to receive the value of NSIDE. Healpix.jl provides a wrapper around this parameter, the Resolution type, which internally keeps a number of precomputed coefficients to accelerate calculations.The following example prints a table containing details about a few Healpix resolutions:using Healpix\n\n@printf(\"%-6s\\t%-12s\\t%-12s\\t%-12s\\n\",\n        \"NSIDE\",\n        \"#pix\",\n        \"#pix per face\",\n        \"solid angle\")\nfor poweroftwo in [0, 1, 2, 3, 4, 5]\n    res = Resolution(2 ^ poweroftwo)\n    @printf(\"%6d\\t%12d\\t%12d\\t%12.4f\\n\",\n            res.nside,\n            res.numOfPixels,\n            res.pixelsPerFace,\n            4π / res.numOfPixels)\nendResolution\nResolution(nside)\nnside2npix(nside)\nnpix2nside(npix)"
+    "text": "A Healpix tessellation is parametrized by a number, called NSIDE, which must be a positive power of 2. It is related to the number of pixels N in the maps by the simple equation N = 12 mathrmNSIDE^2, and it is therefore related to the resolution of the pixelization. Any function working on a Healpix tessellation needs to receive the value of NSIDE. Healpix.jl provides a wrapper around this parameter, the Resolution type, which internally keeps a number of precomputed coefficients to accelerate calculations.The following example prints a table containing details about a few Healpix resolutions:using Healpix # hide\n@printf(\"%-6s\\t%-12s\\t%-12s\\t%-12s\\n\",\n        \"NSIDE\",\n        \"#pix\",\n        \"#pix per face\",\n        \"solid angle\")\nfor poweroftwo in [0, 1, 2, 3, 4, 5]\n    res = Resolution(2 ^ poweroftwo)\n    @printf(\"%6d\\t%12d\\t%12d\\t%12.4f\\n\",\n            res.nside,\n            res.numOfPixels,\n            res.pixelsPerFace,\n            4π / res.numOfPixels)\nendResolution\nResolution(nside::Integer)\nnsideok(nside::Integer)\nnside2npix(nside::Integer)\nnpix2nside(npix::Integer)\nnside2pixarea(nside::Integer)\nnside2resol(nside::Integer)"
 },
 
 {
@@ -85,7 +109,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Pixel functions",
     "title": "Pixel functions",
     "category": "page",
-    "text": ""
+    "text": "DocTestSetup = quote\n    using Healpix\nend"
 },
 
 {
@@ -141,7 +165,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Pixel functions",
     "title": "Pixel functions",
     "category": "section",
-    "text": "In this section we document the functions that convert from a direction in the sky into a pixel index, and vice versa.First of all, Healpix.jl implements the most basic functions to convert between spherical and Cartesian coordinates. Note that Healpix uses co-latitude instead of latitude:using Healpix # hide\nang2vec(0.0, 0.0)\nvec2ang(0.0, 0.0, 1.0)More interesting functions return the index of the pixel on a Healpix-tessellated sphere. For these functions to work, you have to provide a Resolution object:using Healpix # hide\nres = Resolution(16)\nang2pixRing(res, π/2, 0)\nang2pixNest(res, π/2, 0)ang2vec(theta, phi)\nvec2ang(x, y, z)\nang2pixNest(resol::Resolution, theta, phi)\nang2pixRing(resol::Resolution, theta, phi)\npix2angNest(resol::Resolution, pixel)\npix2angRing(resol::Resolution, pixel)"
+    "text": "In this section we document the functions that convert from a direction in the sky into a pixel index, and vice versa.First of all, Healpix.jl implements the most basic functions to convert between spherical and Cartesian coordinates. Note that Healpix uses co-latitude instead of latitude:ang2vec(0.0, 0.0)\nvec2ang(0.0, 0.0, 1.0)More interesting functions return the index of the pixel on a Healpix-tessellated sphere. For these functions to work, you have to provide a Resolution object:res = Resolution(16)\nang2pixRing(res, π/2, 0)\nang2pixNest(res, π/2, 0)ang2vec(theta, phi)\nvec2ang(x, y, z)\nang2pixNest(resol::Resolution, theta, phi)\nang2pixRing(resol::Resolution, theta, phi)\npix2angNest(resol::Resolution, pixel)\npix2angRing(resol::Resolution, pixel)"
 },
 
 {
@@ -149,7 +173,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Map functions",
     "title": "Map functions",
     "category": "page",
-    "text": ""
+    "text": "DocTestSetup = quote\n    using Healpix\nend"
 },
 
 {
@@ -269,7 +293,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Map functions",
     "title": "Testing for conformability",
     "category": "section",
-    "text": "It often happens that two Healpix maps need to be combined together: for instance, pixels on a sky map might need to be masked using a sky mask, or one map might need to be subtracted from another one. «Conformability» means that the operation between the two maps can be done directly on the pixels, without oordering or resolution conversions. The function conformables checks this.using Healpix # hide\nm1 = Map{Float64, RingOrder}(1)\nm2 = Map{Float64, RingOrder}(1)\nm3 = Map{Float64, NestedOrder}(1)\nm4 = Map{Float64, NestedOrder}(2)\nconformables(m1, m2)\nconformables(m1, m3)\nconformables(m1, m4)conformables"
+    "text": "It often happens that two Healpix maps need to be combined together: for instance, pixels on a sky map might need to be masked using a sky mask, or one map might need to be subtracted from another one. «Conformability» means that the operation between the two maps can be done directly on the pixels, without oordering or resolution conversions. The function conformables checks this.m1 = Map{Float64, RingOrder}(1)\nm2 = Map{Float64, RingOrder}(1)\nm3 = Map{Float64, NestedOrder}(1)\nm4 = Map{Float64, NestedOrder}(2)\nconformables(m1, m2)\nconformables(m1, m3)\nconformables(m1, m4)conformables"
 },
 
 {
@@ -277,7 +301,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Spherical harmonics",
     "title": "Spherical harmonics",
     "category": "page",
-    "text": ""
+    "text": "DocTestSetup = quote\n    using Healpix\nend"
 },
 
 {
@@ -341,7 +365,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Visualization",
     "title": "Visualization functions",
     "category": "section",
-    "text": "Healpix.jl implements the project function, which creates a 2D matrix containing the cartographic projection of a map. A few standard cartographic projections are implemented, but users can provide their own projections. The function can optionally use heatmap (from the Plots.jl package) to display the 2D matrix. Two useful wrappers to project are equirectangular and mollweide, which employ the equirectangular and Mollweide projections respectively.using Healpix\nnside = 8\nm = Map{Float64, RingOrder}(nside)\nm.pixels[:] = 1:length(m.pixels)\nmollweide(m)project"
+    "text": "Healpix.jl implements the project function, which creates a 2D matrix containing the cartographic projection of a map. A few standard cartographic projections are implemented, but users can provide their own projections. The function can optionally use heatmap (from the Plots.jl package) to display the 2D matrix. Two useful wrappers to project are equirectangular and mollweide, which employ the equirectangular and Mollweide projections respectively.using Healpix\n\nnside = 8\nm = Map{Float64, RingOrder}(nside)\nm.pixels[:] = 1:length(m.pixels)\nmollweide(m)project"
 },
 
 {
@@ -397,7 +421,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Miscellanea",
     "title": "Miscellanea",
     "category": "page",
-    "text": ""
+    "text": "DocTestSetup = quote\n    using Healpix\nend"
 },
 
 {
