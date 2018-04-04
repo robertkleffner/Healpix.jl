@@ -293,7 +293,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Map functions",
     "title": "Testing for conformability",
     "category": "section",
-    "text": "It often happens that two Healpix maps need to be combined together: for instance, pixels on a sky map might need to be masked using a sky mask, or one map might need to be subtracted from another one. «Conformability» means that the operation between the two maps can be done directly on the pixels, without oordering or resolution conversions. The function conformables checks this.m1 = Map{Float64, RingOrder}(1)\nm2 = Map{Float64, RingOrder}(1)\nm3 = Map{Float64, NestedOrder}(1)\nm4 = Map{Float64, NestedOrder}(2)\nconformables(m1, m2)\nconformables(m1, m3)\nconformables(m1, m4)conformables"
+    "text": "It often happens that two Healpix maps need to be combined together: for instance, pixels on a sky map might need to be masked using a sky mask, or one map might need to be subtracted from another one. «Conformability» means that the operation between the two maps can be done directly on the pixels, without oordering or resolution conversions. The function conformables checks this.using Healpix # hide\nm1 = Map{Float64, RingOrder}(1)\nm2 = Map{Float64, RingOrder}(1)\nm3 = Map{Float64, NestedOrder}(1)\nm4 = Map{Float64, NestedOrder}(2)\nconformables(m1, m2)\nconformables(m1, m3)\nconformables(m1, m4)conformables"
 },
 
 {
