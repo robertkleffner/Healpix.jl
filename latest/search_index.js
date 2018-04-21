@@ -297,6 +297,30 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
+    "location": "mapfunc.html#Healpix.tod2map",
+    "page": "Map functions",
+    "title": "Healpix.tod2map",
+    "category": "function",
+    "text": "tod2map{T,O}(pixidx, tod::Array{T}; nside=128) :: (map, hits)\n\nCreate a binned map for a TOD and return a tuple containing the map itself and the hit map.\n\n\n\n"
+},
+
+{
+    "location": "mapfunc.html#Healpix.combinemaps",
+    "page": "Map functions",
+    "title": "Healpix.combinemaps",
+    "category": "function",
+    "text": "combinemaps{T, O, H}(destmap::Map{T, O}, desthitmap::Map{H, O}, othermap::Map{T, O}, otherhitmap::Map{H, O})\n\nSum \"othermap\" to \"destmap\", assuming that both maps have been produced by binning TODs. The parameters desthitmap and otherhitmap are the two hit maps. At the end of the call, destmap and desthitmap are updated.\n\n\n\n"
+},
+
+{
+    "location": "mapfunc.html#Map-making-1",
+    "page": "Map functions",
+    "title": "Map-making",
+    "category": "section",
+    "text": "Map-making is the process of converting a time series of measurements into a sky map. The most basic form of map-making is the so-called \"binning\", where samples in the time stream falling within the same sky pixel are averaged. This map-making algorithm is strictly accurate only if the noise in the time stream is white.Healpix.jl implements two functions to perform binning, tod2map and combinemaps.tod2map\ncombinemaps"
+},
+
+{
     "location": "alm.html#",
     "page": "Spherical harmonics",
     "title": "Spherical harmonics",
