@@ -125,7 +125,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Pixel functions",
     "title": "Healpix.vec2ang",
     "category": "method",
-    "text": "vec2ang(x, y, z) -> (Float64, Float64)\n\nGiven a vector (not necessarily normalized) whose Cartesian components are x, y, and z, return a pair (theta, phi) containing the colatitude theta and the longitude phi (in radians) of the direction in the sky the vector is pointing at.\n\n\n\n"
+    "text": "vec2ang(x, y, z) -> (Number, Number)\n\nGiven a vector (not necessarily normalized) whose Cartesian components are x, y, and z, return a pair (theta, phi) containing the colatitude theta and the longitude phi (in radians) of the direction in the sky the vector is pointing at.\n\n\n\n"
 },
 
 {
