@@ -381,7 +381,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Visualization",
     "title": "Healpix.project",
     "category": "function",
-    "text": "project(m::Map{T, O}; kwargs...) where {T, O <: Order}\n\nReturn a 2D bitmap (array) containing a cartographic projection of the map and a 2D bitmap containing a boolean mask. The size of the bitmap is specified by figsize, which must be a 2-tuple. The function projfn must be a function which accepts as input two parameters x and y (numbers between -1 and 1).\n\nThe following keywords can be used in the call:\n\nfigsize: 2-tuple specifying the (height, width) of the bitmap in pixels\ncenter: 2-tuple specifying the location (colatitude, longitude) of the sky point that is to be placed in the middle of the image (in radians)\nshow: Boolean; if true (the default), the bitmap will be shown using functions from the \"Plots\" package.\nreturnmask: Boolean; if true, the function returns a 2-tuple containing the image bitmap and a mask bitmap, which is set to true if the pixel falls within the carthographic projection, false otherwise. If returnmask is false, only the image bitmap is returned.\nshow: Boolean. If true (the default), the map will be displayed. It has no effect if returnmask is true.  \n\n\n\n"
+    "text": "project(m::Map{T, O}; kwargs...) where {T <: Number, O <: Order}\n\nReturn a 2D bitmap (array) containing a cartographic projection of the map and a 2D bitmap containing a boolean mask. The size of the bitmap is specified by figsize, which must be a 2-tuple. The function projfn must be a function which accepts as input two parameters x and y (numbers between -1 and 1).\n\nThe following keywords can be used in the call:\n\nfigsize: 2-tuple specifying the (height, width) of the bitmap in pixels\ncenter: 2-tuple specifying the location (colatitude, longitude) of the sky point that is to be placed in the middle of the image (in radians)\nshow: Boolean; if true (the default), the bitmap will be shown using functions from the \"Plots\" package.\nreturnmask: Boolean; if true, the function returns a 2-tuple containing the image bitmap and a mask bitmap, which is set to true if the pixel falls within the carthographic projection, false otherwise. If returnmask is false, only the image bitmap is returned.\nshow: Boolean. If true (the default), the map will be displayed. It has no effect if returnmask is true.  \n\n\n\n"
 },
 
 {
@@ -421,7 +421,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Visualization",
     "title": "Healpix.equirectangular",
     "category": "function",
-    "text": "equirectangular(m::Map{T,O}; kwargs...) where {T <: AbstractFloat, O <: Order}\n\nHigh-level wrapper around project for equirectangular projections.\n\n\n\n"
+    "text": "equirectangular(m::Map{T,O}; kwargs...) where {T <: Number, O <: Order}\n\nHigh-level wrapper around project for equirectangular projections.\n\n\n\n"
 },
 
 {
@@ -429,7 +429,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Visualization",
     "title": "Healpix.mollweide",
     "category": "function",
-    "text": "mollweide(m::Map{T,O}; kwargs...) where {T <: AbstractFloat, O <: Order}\n\nHigh-level wrapper around project for Mollweide projections.\n\n\n\n"
+    "text": "mollweide(m::Map{T,O}; kwargs...) where {T <: Number, O <: Order}\n\nHigh-level wrapper around project for Mollweide projections.\n\n\n\n"
 },
 
 {
