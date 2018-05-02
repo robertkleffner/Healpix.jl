@@ -117,7 +117,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Pixel functions",
     "title": "Healpix.ang2vec",
     "category": "method",
-    "text": "ang2vec(theta, phi) -> (Float64, Float64, Float64)\n\nGiven a direction in the sky with colatitude theta and longitude phi (in radians), return a tuple containing the x, y, and z components of the one-length vector pointing to that direction.\n\n\n\n"
+    "text": "ang2vec(theta, phi) -> Array{Float64}\n\nGiven a direction in the sky with colatitude theta and longitude phi (in radians), return an array of 3 elements containing the x, y, and z components of the one-length vector pointing to that direction.\n\n\n\n"
 },
 
 {
