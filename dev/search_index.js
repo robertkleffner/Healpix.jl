@@ -509,7 +509,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Visualization",
     "title": "Healpix.mollweide",
     "category": "function",
-    "text": "mollweide(m::Map{T,O}; kwargs...) where {T <: Number, O <: Order}\n\nHigh-level wrapper around project for Mollweide projections.\n\n\n\n\n\n"
+    "text": "mollweide(m::Map{T,O}, projparams = Dict()) where {T <: Number,O <: Order}\n\nHigh-level wrapper around project for Mollweide projections.\n\nThe following parameters can be set in the projparams dictionary:\n\nwidth: width of the image, in pixels (default: 720 pixels)\nheight: height of the image, in pixels; if not specified, it will be assumed to be equal to width\n\n\n\n\n\n"
 },
 
 {
@@ -525,31 +525,23 @@ var documenterSearchIndex = {"docs": [
     "page": "Visualization",
     "title": "Healpix.orthographic",
     "category": "function",
-    "text": "orthographic(m::Map{T,O}, ϕ0, λ0; kwargs...) where {T <: Number, O <: Order}\n\nHigh-level wrapper around project for orthographic projections centered around the point (ϕ0, λ0).\n\n\n\n\n\n"
+    "text": "orthographic(m::Map{T,O}, projparams = Dict()) where {T <: Number,O <: Order}\n\nHigh-level wrapper around project for orthographic projections.\n\nThe following parameters can be set in the projparams dictionary:\n\nwidth: width of the image, in pixels (default: 720 pixels)\nheight: height of the image, in pixels; if not specified, it will be assumed to be equal to width\ncenter: position of the pixel in the middle of the left globe (latitude and longitude).\n\n\n\n\n\n"
 },
 
 {
-    "location": "visualization/#Healpix.mollweideprojinv",
+    "location": "visualization/#Healpix.orthographic2",
     "page": "Visualization",
-    "title": "Healpix.mollweideprojinv",
+    "title": "Healpix.orthographic2",
     "category": "function",
-    "text": "function mollweideprojinv(x, y)\n\nInverse Mollweide projection. Given a point (x, y) on the plane, with x ∈ [-1, 1], y ∈ [-1, 1], return a 3-tuple of type (Bool, Number, Number). The boolean specifies if (x, y) falls within the map (true) or not (false), the second and third arguments are the latitude and longitude in radians.\n\n\n\n\n\n"
+    "text": "orthographic2(m::Map{T,O}, projparams = Dict()) where {T <: Number,O <: Order}\n\nHigh-level wrapper around project for stereo orthographic projections.\n\nThe following parameters can be set in the projparams dictionary:\n\nwidth: width of the image, in pixels (default: 720 pixels)\nheight: height of the image, in pixels; if not specified, it will be assumed to be equal to width\ncenter: position of the pixel in the middle of the left globe (latitude and longitude). Default is (0, 0).\n\n\n\n\n\n"
 },
 
 {
-    "location": "visualization/#Healpix.equiprojinv",
+    "location": "visualization/#Healpix.gnomonic",
     "page": "Visualization",
-    "title": "Healpix.equiprojinv",
+    "title": "Healpix.gnomonic",
     "category": "function",
-    "text": "function equiprojinv(x, y)\n\nInverse equirectangular projection. Given a point (x, y) on the plane [-1, 1] × [-1, 1], return a tuple (Bool, Number, Number) where the first Boolean is a flag telling if the point falls within the projection (true) or not (false), and the two numbers are the latitude and colatitude in radians.\n\n\n\n\n\n"
-},
-
-{
-    "location": "visualization/#Healpix.orthoinv",
-    "page": "Visualization",
-    "title": "Healpix.orthoinv",
-    "category": "function",
-    "text": "function orthoinv(x, y, ϕ1, λ0)\n\nInverse orthographic projection centered on (ϕ1, λ0). Given a point (x, y) on the plane, with x ∈ [-1, 1], y ∈ [-1, 1], return a 3-tuple of type (Bool, Number, Number). The boolean specifies if (x, y) falls within the map (true) or not (false), the second and third arguments are the latitude and longitude in radians.\n\n\n\n\n\n"
+    "text": "gnomonic(m::Map{T,O}, projparams = Dict()) where {T <: Number,O <: Order}\n\nHigh-level wrapper around project for gnomonic projections.\n\nThe following parameters can be set in the projparams dictionary:\n\nwidth: width of the image, in pixels (default: 720 pixels)\nheight: height of the image, in pixels; if not specified, it will be assumed to be equal to width\ncenter: position and orientation of the pixel in the middle. It is a 3-element tuple containing:\nThe latitude of the pixel, in radians\nThe longitude of the pixel, in radians\nThe rotation to be applied to the image, in radians\nfov_rad: size of the image along the x and y axes, in radians (default: 15°)\n\nExample\n\nplot(m, gnomonic, Dict(:fov_rad = deg2rad(1.5), :center = (0, 0, deg2rad(45))))\n\n\n\n\n\n"
 },
 
 {
@@ -557,7 +549,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Visualization",
     "title": "Projection functions",
     "category": "section",
-    "text": "Functions mollweide, equirectangular, and orthographic can be passed as parameters to plot.mollweide\nequirectangular\northographicThey are based on inverse projection functions, i.e., functions that take a mollweideprojinv\nequiprojinv\northoinv"
+    "text": "Functions mollweide, equirectangular, and orthographic can be passed as parameters to plot.mollweide\nequirectangular\northographic\northographic2\ngnomonicThey are based on inverse projection functions, i.e., functions that take a mollweideprojinv\nequiprojinv\northoinv\northo2inv\ngnominv"
 },
 
 {
