@@ -45,7 +45,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Working with resolutions",
     "title": "Healpix.Resolution",
     "category": "type",
-    "text": "Resolution objects are needed to perform a number of pixel-related functions, e.g., convert a direction into a pixel number and vice versa.\n\n\n\n\n\n"
+    "text": "struct Resolution\n\nResolution objects are needed to perform a number of pixel-related functions, e.g., convert a direction into a pixel number and vice versa.\n\nThe fields of a Resolution object are the following:\n\nnside: the NSIDE parameter\nnsideTimesTwo: 2 * NSIDE\nnsideTimesFour: 4 * NSIDE\nnumOfPixels: number of pixels in the map\norder: order of the map\npixelsPerFace: number of pixels in each Healpix face\nncap\nfact2\nfact1\n\n\n\n\n\n"
 },
 
 {
@@ -281,19 +281,11 @@ var documenterSearchIndex = {"docs": [
 },
 
 {
-    "location": "mapfunc/#Healpix.Map",
-    "page": "Map functions",
-    "title": "Healpix.Map",
-    "category": "type",
-    "text": "A Healpix map. The type T is used for the value of the pixels in a map, and it can be anything (even a string!). The type O is used to specify the ordering of the pixels, and it can either be RingOrder or NestedOrder.\n\n\n\n\n\n"
-},
-
-{
     "location": "mapfunc/#Map-functions-1",
     "page": "Map functions",
     "title": "Map functions",
     "category": "section",
-    "text": "Functions like pix2angNest and ang2pixNest fully define the Healpix tessellation scheme. They are however extremely impractical in a number of situations. It happens often that a large fraction of pixels in a map need to be processed together. Healpix.jl introduces the Map{T, O <: Order} type, which acts as a collection of all the pixels on the sphere. A Map type holds the value of all the pixels in its pixels field, and it keeps track of the ordering (either RING or NESTED). Here is an example that shows how to create a map and initialize it:nside = 32\nm = Map{Float64, RingOrder}(nside)\nm.pixels[:] = 1.0  # Set all pixels to 1Healpix.jl defines the basic operations on maps (sum, subtraction, multiplication, division). These operations can either combine two maps or a map and a scalar value:mollweide(m * 2.0)\nmollweide(m * m)Map"
+    "text": "Functions like pix2angNest and ang2pixNest fully define the Healpix tessellation scheme. They are however extremely impractical in a number of situations. It happens often that a large fraction of pixels in a map need to be processed together. Healpix.jl introduces the Map{T, O <: Order} type, which acts as a collection of all the pixels on the sphere. A Map type holds the value of all the pixels in its pixels field, and it keeps track of the ordering (either RING or NESTED). Here is an example that shows how to create a map and initialize it:nside = 32\nm = Map{Float64, RingOrder}(nside)\nm.pixels[:] = 1.0  # Set all pixels to 1Healpix.jl defines the basic operations on maps (sum, subtraction, multiplication, division). These operations can either combine two maps or a map and a scalar value:mollweide(m * 2.0)\nmollweide(m * m)The Map{T, O <: Order} is derived from the abstract type GenericMap{T}, which does not encode the ordering. It is useful for functions that can either work on ring/nested-ordered maps but cannot be executed on plain generic arrays:# Return the number of pixels in the map, regardless of its ordering\nmaplength(m::GenericMap{T}) where T = length(m)\n\n# This returns 12\nmaplength(Map{Float64, RingOrder}(1))\n\n# This too returns 12\nmaplength(Map{Float64, NestedOrder}(1))\n\n# This fails\nmaplength(zeros(Float64, 12))GenericMap\nMap"
 },
 
 {
