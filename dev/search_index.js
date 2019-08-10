@@ -325,7 +325,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Map functions",
     "title": "Healpix.pix2ang",
     "category": "function",
-    "text": "pix2ang{T, O <: Order}(map::Map{T, O}, ipix) -> (Float64, Float64)\n\nReturn the pair (theta, phi), where theta is the colatitude and phi the longitude of the direction of the pixel center with index ipix.\n\n\n\n\n\n"
+    "text": "pix2ang{T, O <: Order}(map::Map{T, O}, ipix) -> (Float64, Float64)\npix2ang{T, O <: Order}(map::PolarizedMap{T, O}, ipix) -> (Float64, Float64)\n\nReturn the pair (theta, phi), where theta is the colatitude and phi the longitude of the direction of the pixel center with index ipix.\n\n\n\n\n\n"
 },
 
 {
@@ -333,7 +333,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Map functions",
     "title": "Healpix.ang2pix",
     "category": "function",
-    "text": "ang2pix{T, O <: Order}(map::Map{T, O}, theta::Real, phi::Real)\n\nConvert the direction specified by the colatitude theta (∈ [0, π]) and the longitude phi (∈ [0, 2π]) into the index of the pixel in the Healpix map map.\n\n\n\n\n\n"
+    "text": "ang2pix{T, O <: Order}(map::Map{T, O}, theta, phi)\nang2pix{T, O <: Order}(map::PolarizedMap{T, O}, theta, phi)\n\nConvert the direction specified by the colatitude theta (∈ [0, π]) and the longitude phi (∈ [0, 2π]) into the index of the pixel in the Healpix map map.\n\n\n\n\n\n"
 },
 
 {
@@ -349,7 +349,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Map functions",
     "title": "Healpix.saveToFITS",
     "category": "function",
-    "text": "saveToFITS{T <: Number, O <: Order}(map::Map{T, O},\n                                    f::FITSIO.FITSFile,\n                                    column)\nsaveToFITS{T <: Number, O <: Order}(map::Map{T, O},\n                                    fileName::String,\n                                    typechar=\"D\",\n                                    unit=\"\",\n                                    extname=\"MAP\")\n\nSave a Healpix map in the specified (1-based index) column in a FITS file. If the code fails, FITSIO will raise an exception. (Refer to the FITSIO library for more information.)\n\n\n\n\n\nsaveToFITS(map::Map{T, O}, filename::AbstractString, typechar=\"D\", unit=\"\", extname=\"MAP\") where {T <: Number, O <: Order}\n\nSave a map into a FITS file. The name of the file is specified in filename; if it begins with !, existing files will be overwritten without warning. The parameter typechar specifies the data type to be used in the FITS file: the default (D) will save 64-bit floating-point values. See the CFITSIO documentation for other values. The keyword unit specifies the measure unit used for the pixels in the map. The keyword extname specifies the name of the HDU where the map pixels will be written.\n\n\n\n\n\n"
+    "text": "saveToFITS(map::Map{T, O}, filename::AbstractString, typechar=\"D\", unit=\"\", extname=\"MAP\") where {T <: Number, O <: Order}\nsaveToFITS(map::PolarizedMap{T, O}, filename::AbstractString, typechar=\"D\", unit=\"\", extname=\"MAP\") where {T <: Number, O <: Order}\n\nSave a map into a FITS file. The name of the file is specified in filename; if it begins with !, existing files will be overwritten without warning. The parameter typechar specifies the data type to be used in the FITS file: the default (D) will save 64-bit floating-point values. See the CFITSIO documentation for other values. The keyword unit specifies the measure unit used for the pixels in the map. The keyword extname specifies the name of the HDU where the map pixels will be written.\n\n\n\n\n\n"
 },
 
 {
@@ -381,7 +381,7 @@ var documenterSearchIndex = {"docs": [
     "page": "Map functions",
     "title": "Healpix.conformables",
     "category": "function",
-    "text": "conformables{T, S, O1 <: Order, O2 <: Order}(map1::Map{T, O1},\n                                             map2::Map{S, O2}) -> Bool\n\nDetermine if two Healpix maps are \"conformables\", i.e., if their shape and ordering are the same.\n\n\n\n\n\n"
+    "text": "conformables{T, S, O1 <: Order, O2 <: Order}(map1::Map{T, O1},\n                                             map2::Map{S, O2}) -> Bool\nconformables{T, S, O1 <: Order, O2 <: Order}(map1::PolarizedMap{T, O1},\n                                             map2::PolarizedMap{S, O2}) -> Bool\n\nDetermine if two Healpix maps are \"conformables\", i.e., if their shape and ordering are the same.\n\n\n\n\n\n"
 },
 
 {
